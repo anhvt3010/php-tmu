@@ -1,7 +1,7 @@
 <?php
 // Lấy 04 sản phẩm vừa mới thêm vào products, muốn lấy thêm bao nhiêu cái thì thay đổi thông số này
 
-$stmt = $pdo->prepare('SELECT * FROM products ORDER BY date_added DESC LIMIT 6');
+$stmt = $pdo->prepare('SELECT * FROM products ORDER BY date_added DESC LIMIT 8');
 $stmt->execute();
 $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
