@@ -30,6 +30,8 @@ echo <<<EOT
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    
+    <link rel='shortcut icon' href='imgs/logo.jpg' />
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -49,28 +51,7 @@ echo <<<EOT
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
-    
-    <style>
-        .hero-wrap {
-            background-size: cover; /* Đảm bảo ảnh bao phủ toàn bộ khu vực */
-            background-position: center; /* Căn giữa ảnh */
-            height: 700px; /* Chiều cao của banner */
-            width: 100%; /* Chiều rộng của banner */
-            overflow: hidden; /* Ẩn phần ảnh tràn ra ngoài */
-        }
-
-        @media (max-width: 768px) {
-            .hero-wrap {
-                height: 300px; /* Chiều cao banner cho màn hình nhỏ hơn */
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-wrap {
-                height: 200px; /* Chiều cao banner cho màn hình rất nhỏ */
-            }
-        }
-    </style>
+   
 </head>
 <body class="goto-here">
 <div class="py-1 bg-primary">
@@ -96,7 +77,7 @@ echo <<<EOT
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.php">Natural Flavor</a>
+        <a class="navbar-brand" href="home.php">Natural Flavor</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -105,8 +86,9 @@ echo <<<EOT
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="about.php" class="nav-link">About Natural Flavor</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product</a>
+                    <a class="nav-link dropdown-toggle" href="products.php" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="home.php?page=products"">ALL PRODUCTS</a>
                         <a class="dropdown-item" href="shop.html">NOODLE DISHES</a>
                         <a class="dropdown-item" href="wishlist.html">ORGANIC FRUITS</a>
                     </div>
@@ -119,8 +101,8 @@ echo <<<EOT
                         <a class="dropdown-item" href="distribute-system.php">DISTRIBUTION SYSTEM</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+                <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
+                <li class="nav-item cta cta-colored"><a href="home.php?page=cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
             </ul>
         </div>

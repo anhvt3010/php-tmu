@@ -45,6 +45,35 @@ template_header('About')
                     </div>
                 </div>
             </div>
+            <div class="row justify-content-center mb-2 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center">
+                    <h2 class="mb-4">LIST OF DISTRIBUTION STORES</h2>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">TOPS MARKET AN PHU</h4>
+                    <p>B1 Floor, Cantavil Complex, Song Hanh, An Phu, District 2, Ho Chi Minh City</p>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">TOPS MARKET THAO DIEN</h4>
+                    <p>12 Quoc Huong Street, Thao Dien Ward, District 2, Ho Chi Minh City</p>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">GO! CAN THO</h4>
+                    <p>Lot No. 1, Hung Phu 1 Residential Area, Hung Phu Ward, Cai Rang District, Can Tho CitY</p>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">GO! NGUYEN THI THAP</h4>
+                    <p>Lot A, Cityland Residential Area, 99 Nguyen Thi Thap, Tan Phu Ward, District 7, Ho Chi Minh City</p>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">ANNAM ESTELLA</h4>
+                    <p>Estella Building, 88 Song Hanh, An Phu Ward, District 2, Ho Chi Minh City</p>
+                </div>
+                <div class="col-md-7 heading-section ftco-animate text-center mb-3">
+                    <h4 class="mb-2">ANNAM THAO DIEN</h4>
+                    <p>41A Thao Dien, Thao Dien Ward, District 2, Ho Chi Minh City</p>
+                </div>
+            </div>
         </div>
     </section>
 
