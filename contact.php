@@ -62,7 +62,16 @@ template_header('About')
             </div>
 
             <div class="col-md-6 d-flex">
-                <div id="map" class="bg-white"></div>
+                <div class="bg-white" style="width: 100%; height: 400px;">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.123456789012!2d105.7724486!3d21.0367059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b6163c392f%3A0x1ebf64facbb56d03!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUaMawxqFuZyBt4bqhaQ!5e0!3m2!1svi!2s!4v1616161616161"
+                            width="100%"
+                            height="400"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>

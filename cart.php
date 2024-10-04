@@ -37,7 +37,7 @@ if (isset($_POST['product_id'], $_POST['quantity']) && is_numeric($_POST['produc
     }
 
     // Tránh submit nhiều lần ...
-    header('location: home.php?page=cart');
+    header('location: index.php?page=cart');
     exit;
 }
 
@@ -63,13 +63,62 @@ if (isset($_POST['update']) && isset($_SESSION['cart'])) {
         }
     }
     // Prevent form resubmission...
-    header('Location: home.php?page=cart');
+    header('Location: index.php?page=cart');
     exit;
 }
 
 // Send the user to the place order page if they click the Place Order button, also the cart should not be empty
 if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-    header('Location: home.php?page=placeorder');
+    // Lấy thông tin từ biểu mẫu
+    $fullname = isset($_POST['fullname']) ? $_POST['fullname'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $address = isset($_POST['address']) ? $_POST['address'] : '';
+
+    // Kiểm tra và xác thực thông tin
+    if (empty($fullname) || empty($phone) || empty($address)) {
+        // Nếu có trường nào đó trống, hiển thị thông báo lỗi
+        echo "<script>alert('Please fill in the shipping information completely.'); window.location.href='index.php?page=cart';</script>";
+        exit;
+    }
+
+    // Tính toán tổng tiền (giả sử phí giao hàng là 30.000 VND)
+    $subtotal = 0.00;
+    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+        // Giả sử bạn đã có một hàm để lấy giá sản phẩm từ CSDL
+        $stmt = $pdo->prepare('SELECT price FROM products WHERE id = ?');
+        $stmt->execute([$product_id]);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($product) {
+            $subtotal += $product['price'] * $quantity;
+        }
+    }
+    $total = $subtotal + 30; // Thêm phí giao hàng
+
+    // Thêm thông tin đơn hàng vào bảng orders
+    $stmt = $pdo->prepare('INSERT INTO orders (customer_name, customer_phone, customer_address, status) VALUES (?, ?, ?, ?)');
+    $stmt->execute([$fullname, $phone, $address, 0]); // 0 là trạng thái mặc định
+
+    // Lấy ID của đơn hàng vừa tạo
+    $order_id = $pdo->lastInsertId();
+
+    // Thêm thông tin chi tiết đơn hàng vào bảng order_detail
+    foreach ($_SESSION['cart'] as $product_id => $quantity) {
+        $stmt = $pdo->prepare('INSERT INTO order_detail (order_id, product_id, quantity) VALUES (?, ?, ?)');
+        $stmt->execute([$order_id, $product_id, $quantity]);
+    }
+
+    // Ghi lại thông tin đơn hàng vào mảng
+    $order_info = [
+        'fullname' => $fullname,
+        'phone' => $phone,
+        'address' => $address,
+        'cart' => $_SESSION['cart'],
+        'subtotal' => $subtotal,
+        'total' => $total
+    ];
+
+    // Chuyển hướng đến trang đặt hàng
+    header('Location: index.php?page=placeorder&order_info=' . urlencode(serialize($order_info)));
     exit;
 }
 
@@ -92,6 +141,7 @@ if ($products_in_cart) {
         $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['id']];
     }
 }
+$total = $subtotal + 30
 ?>
 
 <?= template_header('Cart') ?>
@@ -177,60 +227,61 @@ if ($products_in_cart) {
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
-<!--                <div class="col-lg-6 mt-5 cart-wrap ftco-animate">-->
-<!--                    <div class="cart-total mb-3">-->
-<!--                        <h3>Coupon Code</h3>-->
-<!--                        <p>Enter your coupon code if you have one</p>-->
-<!--                        <form action="#" class="info">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="">Coupon code</label>-->
-<!--                                <input type="text" class="form-control text-left px-3" placeholder="">-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                    <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>-->
-<!--                </div>-->
-                <div class="col-lg-6 mt-5 cart-wrap ftco-animate">
-                    <div class="cart-total mb-3">
-                        <h3>Cart Totals</h3>
-                        <p class="d-flex">
-                            <span>Subtotal</span>
-                            <span>
-                                <?php
-                                if ($subtotal > 1000) {
-                                    echo number_format($subtotal, 0, ',', '.') . ".000 VND";
-                                } else {
-                                    echo $subtotal . ".000 VND";
-                                }
-                                ?>
-                            </span>
-                        </p>
-                        <p class="d-flex">
-                            <span>Delivery</span>
-                            <span>30.000 VND</span>
-                        </p>
-                        <hr>
-                        <p class="d-flex total-price">
-                            <span>Total</span>
-                            <span>
-                                <?php
-                                if ($subtotal > 1000) {
-                                    echo number_format($subtotal, 0, ',', '.') . ".000 VND";
-                                } else {
-                                    echo $subtotal . ".000 VND";
-                                }
-                                ?>
-                            </span>
-                        </p>
+            <?php if (!empty($products)): // Kiểm tra nếu có sản phẩm trong giỏ ?>
+                <div class="row justify-content-end">
+                    <div class="col-lg-6 mt-5 cart-wrap ftco-animate">
+                        <div class="cart-total mb-3">
+                            <h3>Delivery Information</h3>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-2 col-form-label">Fullname: </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="fullname" placeholder="enter your name..." >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phone" class="col-sm-2 col-form-label">Phone: </label>
+                                <div class="col-sm-10">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="enter your phone..." >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address delivery</label>
+                                <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <p>
-                    <div class="d-flex justify-content-between">
-                        <input class="btn btn-secondary py-3 px-4" type="submit" value="Update" name="update">
-                        <input class="btn btn-primary py-3 px-4" type="submit" value="Place Order" name="placeorder">
+                    <div class="col-lg-6 mt-5 cart-wrap ftco-animate">
+                        <div class="cart-total mb-3">
+                            <h3>Cart Totals</h3>
+                            <p class="d-flex">
+                                <span>Subtotal</span>
+                                <span>
+                                    <?php
+                                    echo number_format($subtotal, 0, ',', '.') . ".000 VND";
+                                    ?>
+                                </span>
+                            </p>
+                            <p class="d-flex">
+                                <span>Delivery</span>
+                                <span>30.000 VND</span>
+                            </p>
+                            <hr>
+                            <p class="d-flex total-price">
+                                <span>Total</span>
+                                <span>
+                                    <?php
+                                    echo number_format($total, 0, ',', '.') . ".000 VND";
+                                    ?>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <input class="btn btn-secondary py-3 px-4" type="submit" value="Update" name="update">
+                            <input class="btn btn-primary py-3 px-4" type="submit" value="Place Order" name="placeorder">
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; // Kết thúc kiểm tra sản phẩm ?>
         </form>
     </div>
 </section>

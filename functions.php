@@ -10,7 +10,7 @@ function pdo_connect_mysql() {
     try {
     	return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
     } catch (PDOException $exception) {
-    	
+
 		// Nếu có lỗi thì báo lỗi .
     	exit('Failed to connect to database!');
     }
@@ -77,7 +77,7 @@ echo <<<EOT
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="home.php">Natural Flavor</a>
+        <a class="navbar-brand" href="index.php">Natural Flavor</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -88,9 +88,9 @@ echo <<<EOT
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="products.php" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Product</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="home.php?page=products"">ALL PRODUCTS</a>
-                        <a class="dropdown-item" href="shop.html">NOODLE DISHES</a>
-                        <a class="dropdown-item" href="wishlist.html">ORGANIC FRUITS</a>
+                        <a class="dropdown-item" href="index.php?page=products"">ALL PRODUCTS</a>
+                        <a class="dropdown-item" href="index.php?page=products&c=noodles">NOODLE DISHES</a>
+                        <a class="dropdown-item" href="index.php?page=products&c=fruits">ORGANIC FRUITS</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="certification.php" class="nav-link">Certification</a></li>
@@ -102,8 +102,11 @@ echo <<<EOT
                     </div>
                 </li>
                 <li class="nav-item"><a href="contact.php" class="nav-link">Contact Us</a></li>
-                <li class="nav-item cta cta-colored"><a href="home.php?page=cart" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
-
+                <li class="nav-item cta cta-colored">
+                    <a href="index.php?page=cart" class="nav-link">
+                        <span class="icon-shopping_cart"></span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

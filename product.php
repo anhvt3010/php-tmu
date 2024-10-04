@@ -62,20 +62,14 @@ if (isset($_GET['id'])) {
                             <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Đã bán</span></a>
                         </p>
                     </div>
-                    <p class="price"><span>&dollar;<?= $product['price'] ?></span></p>
-                    <p><?php echo "<pre>" . htmlspecialchars($product['description']) . "</pre>"; ?></p>
+                    <p class="price"><span><?= $product['price'] ?>.000 VND</span></p>
+                    <p><?php echo "<p>" . htmlspecialchars($product['description']) . "</p>"; ?></p>
                     <form action="index.php?page=cart" method="post">
                         <div class="row mt-4">
                             <div class="col-md-6">
                                 <div class="form-group d-flex">
                                     <div class="select-wrap">
                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">Nhỏ</option>
-                                            <option value="">Vừa</option>
-                                            <option value="">Lớn</option>
-                                            <option value="">Rất lớn</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
