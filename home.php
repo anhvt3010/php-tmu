@@ -10,35 +10,14 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image: url(imgs/banner1.jpg); height: 100%">
-<!--            <div class="overlay"></div>-->
+        <div class="slider-item" style="background-image: url(imgs/banner1.jpg);
+        background-size: cover;
+        height: 80vh;">
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-<!--                    <div class="col-md-12 ftco-animate text-center">-->
-<!--                        <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>-->
-<!--                        <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>-->
-<!--                        <p><a href="#" class="btn btn-primary">View Details</a></p>-->
-<!--                    </div>-->
-
                 </div>
             </div>
         </div>
-
-<!--        <div class="slider-item" style="background-image: url(images/bg_2.jpg);">-->
-<!--            <div class="overlay"></div>-->
-<!--            <div class="container">-->
-<!--                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">-->
-<!---->
-<!--                    <div class="col-sm-12 ftco-animate text-center">-->
-<!--                        <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>-->
-<!--                        <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>-->
-<!--                        <p><a href="#" class="btn btn-primary">View Details</a></p>-->
-<!--                    </div>-->
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </section>
 
@@ -110,17 +89,14 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="product">
                         <a href="index.php?page=product&id=<?=$product['id']?>" class="img-prod">
                             <img class="img-fluid" src="imgs/<?=$product['img']?>" alt="<?=$product['title']?>">
-                            <span class="status">30%</span>
-                            <div class="overlay"></div>
                         </a>
                         <div class="text py-3 pb-4 px-3 text-center">
                             <h3><a href="index.php?page=product&id=<?=$product['id']?>"><?=$product['title']?></a></h3>
                             <div class="d-flex">
                                 <div class="pricing">
-                                    <p class="price">
-                                        <span class="mr-2 price-dc">&dollar;<?=$product['price']?></span>
-                                        <span class="price-sale">&dollar;<?=$product['price']?></span>
-                                    </p>
+                                    <span class="mr-2 price-dc" style="color: #82ae46">
+                                        <?=$product['price']?>.000 VND
+                                    </span>
                                 </div>
                             </div>
                             <div class="bottom-area d-flex px-3">

@@ -17,7 +17,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt->execute([$product_id]);
 
     // Chuyển hướng về trang danh sách sản phẩm sau khi xóa
-    header('Location: home.php?page=products');
+    header('Location: index.php');
     exit;
 } else {
     echo "ID sản phẩm không hợp lệ.";
