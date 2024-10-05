@@ -78,7 +78,7 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <span class="subheading">Featured Products</span>
                 <h2 class="mb-4">Our Products</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                <p>Far far away, behind the word mountains, far from the countries VietNam and Natural Flavor</p>
             </div>
         </div>
     </div>

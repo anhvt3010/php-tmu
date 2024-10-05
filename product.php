@@ -25,12 +25,6 @@ if (isset($_GET['id'])) {
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
-<!--                    <p class="breadcrumbs">-->
-<!--                        <span class="mr-2"><a href="index.html">Trang chủ</a></span>-->
-<!--                        <span class="mr-2"><a href="index.html">Sản phẩm</a></span>-->
-<!--                        <span>Chi tiết sản phẩm</span>-->
-<!--                    </p>-->
-<!--                    <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>-->
                 </div>
             </div>
         </div>
@@ -90,7 +84,7 @@ if (isset($_GET['id'])) {
                             </div>
                             <div class="w-100"></div>
                             <div class="col-md-12">
-                                <p style="color: #000;"><?= $product['quantity'] ?> kg có sẵn</p>
+                                <p style="color: #000;">Số lượng <?= $product['quantity'] ?> có sẵn</p>
                             </div>
                         </div>
                         <input type="hidden" name="product_id" value="<?= $product['id'] ?>">

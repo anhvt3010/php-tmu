@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Xử lý tải lên hình ảnh
     $img = $_FILES['img']['name'];
-    $target_dir = "E:/xampp/htdocs/shoppingcart/imgs/"; // Đường dẫn thư mục lưu trữ hình ảnh
+    $target_dir = "C:/xampp/htdocs/shoppingcart/imgs/"; // Đường dẫn thư mục lưu trữ hình ảnh
     $target_file = $target_dir . basename($img);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
