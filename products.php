@@ -7,7 +7,6 @@ $current_page = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 
 $category = isset($_GET['c']) ? $_GET['c'] : null;
 $price_range = isset($_GET['price_range']) ? $_GET['price_range'] : 'all';
 
-// Xác định khoảng giá dựa trên lựa chọn
 switch ($price_range) {
     case '0-50':
         $min_price = 0;
@@ -21,9 +20,9 @@ switch ($price_range) {
         $min_price = 100;
         $max_price = 200;
         break;
-    case '200+':
+    case '+200':
         $min_price = 200;
-        $max_price = PHP_INT_MAX;
+        $max_price = PHP_INT_MAX; // Sử dụng PHP_INT_MAX để đảm bảo lấy tất cả sản phẩm có giá trên 200
         break;
     default:
         $min_price = 0;
@@ -41,7 +40,7 @@ if ($category) {
     $stmt->bindValue(5, $num_products_on_each_page, PDO::PARAM_INT);
     $stmt->execute();
 
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);https://maps.g
 
     $total_products_stmt = $pdo->prepare('SELECT COUNT(*) FROM products WHERE category = ? AND price BETWEEN ? AND ?');
     $total_products_stmt->bindValue(1, $category, PDO::PARAM_STR);
@@ -97,7 +96,7 @@ if ($category) {
                     <a href="index.php?page=products&price_range=0-50" class="btn btn-outline-primary <?= $price_range == '0-50' ? 'active' : '' ?>">0 - 50</a>
                     <a href="index.php?page=products&price_range=50-100" class="btn btn-outline-primary <?= $price_range == '50-100' ? 'active' : '' ?>">50 - 100</a>
                     <a href="index.php?page=products&price_range=100-200" class="btn btn-outline-primary <?= $price_range == '100-200' ? 'active' : '' ?>">100 - 200</a>
-                    <a href="index.php?page=products&price_range=200+" class="btn btn-outline-primary <?= $price_range == '200+' ? 'active' : '' ?>">200+</a>
+                    <a href="index.php?page=products&price_range=+200" class="btn btn-outline-primary <?= $price_range == '+200' ? 'active' : '' ?>">200+</a>
                 </div>
             </div>
             <p>Total <?=$total_products?> Products</p>

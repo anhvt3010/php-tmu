@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Kiểm tra kích thước tệp
-    if ($_FILES['img']['size'] > 500000) { // Giới hạn kích thước tệp 500KB
+    if ($_FILES['img']['size'] > 5000000) { // Giới hạn kích thước tệp 5MB
         echo "Xin lỗi, tệp của bạn quá lớn.";
         $uploadOk = 0;
     }

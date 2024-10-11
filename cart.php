@@ -84,7 +84,6 @@ if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION[
     // Tính toán tổng tiền (giả sử phí giao hàng là 30.000 VND)
     $subtotal = 0.00;
     foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        // Giả sử bạn đã có một hàm để lấy giá sản phẩm từ CSDL
         $stmt = $pdo->prepare('SELECT price FROM products WHERE id = ?');
         $stmt->execute([$product_id]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -95,7 +94,7 @@ if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION[
     $total = $subtotal + 30; // Thêm phí giao hàng
 
     // Thêm thông tin đơn hàng vào bảng orders
-    $stmt = $pdo->prepare('INSERT INTO orders (customer_name, customer_phone, customer_address, status) VALUES (?, ?, ?, ?)');
+    $stmt = $pdo->prepare('INSERT INTO orders (customer_name, customer_phone, customer_address, date_added, status) VALUES (?, ?, ?, NOW(), ?)');
     $stmt->execute([$fullname, $phone, $address, 0]); // 0 là trạng thái mặc định
 
     // Lấy ID của đơn hàng vừa tạo

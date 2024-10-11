@@ -48,14 +48,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             }
 
             // Kiểm tra kích thước tệp
-            if ($_FILES['img']['size'] > 500000) { // Giới hạn kích thước tệp 500KB
+            if ($_FILES['img']['size'] > 5000000) { // Giới hạn kích thước tệp 5MB
                 echo "Xin lỗi, tệp của bạn quá lớn.";
                 $uploadOk = 0;
             }
 
             // Kiểm tra định dạng tệp
-            if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
-                echo "Xin lỗi, chỉ cho phép tệp JPG, JPEG, PNG & GIF.";
+            if (!in_array($imageFileType, ['jpg'])) {
+                echo "Xin lỗi, chỉ cho phép tệp JPG";
                 $uploadOk = 0;
             }
         } else {
